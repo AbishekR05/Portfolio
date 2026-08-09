@@ -63,7 +63,8 @@ export default function App() {
       type: "x,y",
       edgeResistance: 0.5,
       bounds: { minX, maxX: 0, minY, maxY: 0 },
-      inertia: true
+      inertia: true,
+      zIndexBoost: false
     })[0];
 
     mainDragRef.current = canvasDrag;
