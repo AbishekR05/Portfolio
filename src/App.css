@@ -220,6 +220,10 @@ body:active {
 }
 
 .hero-center {
+  position: absolute;
+  left: 419px;
+  top: 164px;
+  width: 529px;
   text-align: center;
   z-index: 5;
 }
@@ -332,14 +336,14 @@ body:active {
 }
 
 #ill-rasgula {
-  left: 50%;
-  top: 400px;
-  transform: translateX(-50%);
-  width: 180px;
+  left: 620px;
+  top: 321px;
+  width: 170px;
+  position: absolute;
 }
 
 #ill-rasgula img {
-  width: 180px;
+  width: 170px;
   height: auto;
 }
 
@@ -368,8 +372,10 @@ body:active {
 /* About me Card (Green) */
 #card-about-link {
   background-color: var(--color-green);
-  left: 360px;
-  top: 480px;
+  left: 369px;
+  top: 491px;
+  width: 201px;
+  min-height: 207px;
   transform: rotate(-6deg);
 }
 
@@ -403,8 +409,10 @@ body:active {
 /* Let's Talk Card (Pink) */
 #card-contact {
   background-color: var(--color-pink);
-  right: 360px;
-  top: 480px;
+  left: 819px;
+  top: 493px;
+  width: 199px;
+  min-height: 205px;
   transform: rotate(6deg);
 }
 
@@ -556,28 +564,42 @@ body:active {
 /* --- Draggable Laptop Component UI --- */
 .laptop-container {
   position: absolute;
-  left: 600px;
-  top: 550px;
-  width: 160px;
-  height: 160px;
+  left: 201px;
+  top: 121px;
+  width: 270px;
+  height: 270px;
   cursor: pointer;
   z-index: 25;
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .laptop-container:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-.laptop-closed-img, .laptop-open-img {
+.laptop-container .laptop-base-closed {
   width: 100%;
   height: auto;
-  user-select: none;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.laptop-container .laptop-hover-open {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transform: translateY(15px) scale(0.9);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: none;
 }
 
-.laptop-open-img {
-  display: none; /* Closed by default */
+.laptop-container:hover .laptop-hover-open,
+.laptop-container.is-open .laptop-hover-open {
+  opacity: 1;
+  transform: translateY(-20px) scale(1.05);
 }
 
 /* Tooltip / Status screen display when laptop is open */
@@ -598,14 +620,6 @@ body:active {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.laptop-container.is-open .laptop-closed-img {
-  display: none;
-}
-
-.laptop-container.is-open .laptop-open-img {
-  display: block;
-}
-
 .laptop-container.is-open .laptop-tooltip {
   opacity: 1;
   transform: translateX(-50%) scale(1);
@@ -622,4 +636,28 @@ body:active {
   0% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-8px) rotate(-1deg); }
   100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* --- Full Screen Story Page Overlay --- */
+.story-page-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+  z-index: 500;
+  overflow-y: auto;
+  padding: 100px 40px;
+  background-image: 
+    radial-gradient(var(--text-muted) 0.5px, transparent 0.5px), 
+    radial-gradient(var(--text-muted) 0.5px, #FBFBFA 0.5px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  animation: pageFadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
 }
