@@ -673,3 +673,102 @@ body, html {
   from { opacity: 0; transform: scale(1.02); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* ==============================
+   RESUME FOLDER
+   ============================== */
+
+#ill-resume-folder {
+  left: 1020px;
+  top: 490px;
+  width: 100px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 15;
+}
+
+.folder-icon-img {
+  width: 100px;
+  height: auto;
+  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.25s ease;
+  filter: drop-shadow(0 8px 16px rgba(0, 120, 200, 0.25));
+}
+
+.folder-label {
+  font-family: var(--font-satoshi);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Popup — hidden by default */
+.resume-popup {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.92) translateY(10px);
+  width: 340px;
+  background: #ffffff;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.18);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 200;
+}
+
+.resume-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #f5f5f5;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  font-family: var(--font-satoshi);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.resume-download-btn {
+  font-family: var(--font-clash);
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--text-dark);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.resume-download-btn:hover {
+  background: #333;
+  transform: scale(1.03);
+}
+
+.resume-iframe {
+  width: 100%;
+  height: 420px;
+  border: none;
+  display: block;
+}
+
+/* Show popup & lift folder on hover */
+.resume-folder:hover .folder-icon-img {
+  transform: translateY(-6px) scale(1.06);
+  filter: drop-shadow(0 16px 28px rgba(0, 120, 200, 0.35));
+}
+
+.resume-folder:hover .resume-popup {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1) translateY(0px);
+}
