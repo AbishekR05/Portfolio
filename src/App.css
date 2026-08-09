@@ -151,18 +151,18 @@ body:active {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 15px 10px;
-  border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-  transition: opacity 0.5s ease;
+  background: #ffffff !important;
+  border: 1.5px solid var(--text-dark) !important;
+  padding: 22px 14px;
+  border-radius: 35px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  z-index: 220;
 }
 
 .sidebar-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,10 +171,10 @@ body:active {
 }
 
 .sidebar-icon img {
-  width: 22px;
-  height: 22px;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
+  width: 24px;
+  height: 24px;
+  opacity: 1 !important;
+  transition: transform 0.2s ease;
 }
 
 .sidebar-icon:hover {
@@ -301,11 +301,34 @@ body:active {
   right: 200px;
   top: 200px;
   width: 268px;
+  position: absolute;
 }
 
-#ill-waving img {
-  width: 268px;
+#ill-waving .waving-base {
+  width: 100%;
   height: auto;
+  display: block;
+  transition: opacity 0.25s ease-in-out;
+}
+
+#ill-waving .waving-hover-gotcha {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  display: block;
+  transition: opacity 0.25s ease-in-out;
+  pointer-events: none;
+}
+
+#ill-waving:hover .waving-base {
+  opacity: 0;
+}
+
+#ill-waving:hover .waving-hover-gotcha {
+  opacity: 1;
 }
 
 #ill-rasgula {

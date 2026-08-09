@@ -6,6 +6,7 @@ import './App.css';
 // Import Figma assets
 import personThinking from './assets/person_thinking.png';
 import waving from './assets/waving.png';
+import cameraGotcha from './assets/camera_gotcha.png';
 import rasgula from './assets/rasgula.png';
 import peaceAvatar from './assets/Peace.png';
 import laptopClosed from './assets/laptop_closed.png';
@@ -253,8 +254,9 @@ export default function App() {
               <img className="laptop-hover-open" src={laptopOpen} alt="Open Laptop" />
             </div>
             
-            <div className="illustration" id="ill-waving">
-              <img src={waving} alt="Person waving" />
+            <div className="illustration waving-hover-container" id="ill-waving">
+              <img className="waving-base" src={waving} alt="Person waving" />
+              <img className="waving-hover-gotcha" src={cameraGotcha} alt="Person gotcha with camera" />
             </div>
             
             <div className="illustration" id="ill-rasgula">
