@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abishek Ramesh — Creative Portfolio</title>
+  <meta name="description" content="Non-linear interactive portfolio of Abishek Ramesh — UI/UX Designer, AI/DS Student, and Full Stack Developer.">
+  <link rel="stylesheet" href="styles/main.css">
+  
+  <!-- Fontshare for Clash Display and Satoshi Fonts -->
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+  <!-- Google Fonts for Caveat Hand-written Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Fixed HUD Layer (Floating on top of the panning canvas) -->
+  <div class="hud-layer">
+    <header class="hud-header">
+      <div class="logo" id="hud-logo">Abishek Ramesh</div>
+      <button class="back-btn hidden" id="back-to-main-btn">Back to main</button>
+      <button class="explore-btn" id="explore-hud-btn">Click to Explore</button>
+    </header>
+
+    <!-- Sidebar Tools Dock -->
+    <aside class="hud-sidebar" id="hud-sidebar-dock">
+      <div class="sidebar-icon" title="Figma">
+        <img src="assets/figma_logo.svg" alt="Figma">
+      </div>
+      <div class="sidebar-icon" title="Claude">
+        <img src="assets/claude_logo.svg" alt="Claude">
+      </div>
+      <div class="sidebar-icon" title="GitHub">
+        <img src="assets/github_logo.svg" alt="GitHub">
+      </div>
+      <div class="sidebar-icon" title="Gemini">
+        <img src="assets/gemini_logo.svg" alt="Gemini">
+      </div>
+    </aside>
+  </div>
+
+  <!-- Draggable Canvas Container -->
+  <div id="viewport">
+    <main id="canvas">
+      
+      <!-- ZONE 1: Hero / Landing Section -->
+      <section class="canvas-zone" id="zone-hero">
+        <div class="hero-wrapper">
+          
+          <!-- Decorative Illustrations -->
+          <div class="illustration" id="ill-guy-laptop">
+            <img src="assets/person_thinking.png" alt="Person typing on laptop">
+          </div>
+          
+          <div class="illustration" id="ill-waving">
+            <img src="assets/waving.png" alt="Person waving">
+          </div>
+          
+          <div class="illustration" id="ill-rasgula">
+            <img src="assets/rasgula.png" alt="Bowl of sweet Rasgullas">
+          </div>
+
+          <!-- Hero Central Typography -->
+          <div class="hero-center">
+            <h1 class="hero-title">Be Creative</h1>
+            <p class="hero-subtitle">>AI/DS Student &nbsp; >Full Stack Developer &nbsp; >UI/UX Designer</p>
+          </div>
+
+          <!-- Clickable / Draggable Cards -->
+          <!-- About Card link to detail zone -->
+          <div class="card-item" id="card-about-link">
+            <h2 class="card-title">About me</h2>
+            <img class="card-about-avatar" src="assets/Peace.png" alt="Peace avatar illustration">
+            <span class="card-action">Get To know about me &gt;</span>
+          </div>
+
+          <!-- Contact / Let's Talk Card -->
+          <div class="card-item" id="card-contact">
+            <div class="contact-header">Let’s Talk</div>
+            <div class="contact-sub">Good work starts with good convos</div>
+            <div class="contact-email">abishekramesh1976@gmail.com</div>
+          </div>
+
+          <!-- Draggable Laptop (Core interactive object) -->
+          <div class="laptop-container" id="draggable-laptop">
+            <img class="laptop-closed-img" src="assets/laptop_closed.png" alt="Closed Laptop">
+            <img class="laptop-open-img" src="assets/laptop_open.png" alt="Open Laptop">
+            <div class="laptop-tooltip">Busy rn</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ZONE 2: About Me Detailed Panel -->
+      <section class="canvas-zone" id="zone-about">
+        <div class="about-wrapper">
+          
+          <header class="about-header">
+            <h2 class="about-title">My Story</h2>
+            <p class="about-timeline">Architecture &nbsp;→&nbsp; Brand &nbsp;→&nbsp; Web &nbsp;→&nbsp; AI</p>
+          </header>
+
+          <div class="about-content">
+            <div class="about-left">
+              <p>I started in architecture, moved into brand and packaging design, and somewhere along the way fell in love with building for the screen. Now I sit at the intersection of design thinking and emerging technology — making things that feel considered, from the first sketch to the final pixel.</p>
+              <p>I build with AI the way a photographer works with light — it's a medium, not a shortcut. The taste, the decisions, the creative direction? That's still very human. That's still mine.</p>
+            </div>
+            
+            <div class="about-right">
+              <blockquote class="about-quote">
+                I believe the best work happens when craft meets curiosity. I care about the details that most people won't notice but everyone will feel — the weight of a typeface, the rhythm of a layout, the moment an interaction earns a smile.
+              </blockquote>
+            </div>
+          </div>
+
+          <!-- Showcase Box -->
+          <div class="about-showcase">
+            <span>Portfolio Showcase Showcase / Interactive Gallery Coming Soon</span>
+          </div>
+
+          <!-- Skill Badges -->
+          <footer class="badge-container">
+            <div class="badge-item badge-figma">
+              <img src="assets/figma_logo.svg" alt="Figma">
+              <span>Figma</span>
+            </div>
+            <div class="badge-item badge-github">
+              <img src="assets/github_logo.svg" alt="GitHub">
+              <span>GitHub</span>
+            </div>
+            <div class="badge-item badge-gemini">
+              <img src="assets/gemini_logo.svg" alt="Gemini">
+              <span>Gemini</span>
+            </div>
+            <div class="badge-item badge-claude">
+              <img src="assets/claude_logo.svg" alt="Claude">
+              <span>Claude</span>
+            </div>
+          </footer>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- CDN scripts for GSAP and GSAP Draggable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>

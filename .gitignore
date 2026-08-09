@@ -1,0 +1,7 @@
+.env
+figma_data.json
+node_modules/
+.DS_Store
+dist/
+.agents/
+*.log
