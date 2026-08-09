@@ -260,7 +260,7 @@ export default function App() {
 
       {/* Zone 2: Story Detail Panel (rendered as separate fullscreen page overlay) */}
       {currentPage === 'about' && (
-        <section className="story-page-fullscreen" id="zone-about">
+        <section className="story-page-fullscreen">
           <div className="about-wrapper">
             
             <header className="about-header">
