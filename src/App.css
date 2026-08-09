@@ -587,43 +587,21 @@ body:active {
 
 .laptop-container .laptop-hover-open {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: -45px;
+  left: 45%;
+  width: 140px;
   height: auto;
   opacity: 0;
-  transform: translateY(15px) scale(0.9);
+  transform: translateY(15px) scale(0.8);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: none;
+  z-index: 30;
 }
 
 .laptop-container:hover .laptop-hover-open,
 .laptop-container.is-open .laptop-hover-open {
   opacity: 1;
-  transform: translateY(-20px) scale(1.05);
-}
-
-/* Tooltip / Status screen display when laptop is open */
-.laptop-tooltip {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%) scale(0.9);
-  background-color: var(--text-dark);
-  color: #fff;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-family: var(--font-caveat);
-  font-size: 14px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.laptop-container.is-open .laptop-tooltip {
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
+  transform: translateY(-10px) scale(1);
 }
 
 /* Utility visibility classes */

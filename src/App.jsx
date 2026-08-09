@@ -222,7 +222,6 @@ export default function App() {
             >
               <img className="laptop-base-closed" src={laptopClosed} alt="Closed Laptop" />
               <img className="laptop-hover-open" src={laptopOpen} alt="Open Laptop" />
-              <div className="laptop-tooltip">Busy rn</div>
             </div>
             
             {/* Waving/Gotcha guy (positioned according to Figma coordinates) */}
