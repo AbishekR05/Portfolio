@@ -43,6 +43,13 @@ body:active {
   cursor: grabbing;
 }
 
+#root {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
 /* Base Viewport (Fixed Camera Frame) */
 #viewport {
   position: relative;
@@ -73,7 +80,7 @@ body:active {
   width: 100%;
   height: 100%;
   pointer-events: none; /* Let clicks pass through to canvas */
-  z-index: 100;
+  z-index: 200;
 }
 
 .hud-layer * {
@@ -263,11 +270,31 @@ body:active {
   left: 200px;
   top: 200px;
   width: 268px;
+  position: absolute;
 }
 
-#ill-guy-laptop img {
-  width: 268px;
+#ill-guy-laptop .laptop-base-closed {
+  width: 100%;
   height: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+#ill-guy-laptop .laptop-hover-open {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transform: translateY(15px) scale(0.9);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+#ill-guy-laptop:hover .laptop-hover-open {
+  opacity: 1;
+  transform: translateY(-20px) scale(1.05);
 }
 
 #ill-waving {

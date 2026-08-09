@@ -248,8 +248,9 @@ export default function App() {
           <div className="hero-wrapper">
             
             {/* Element Illustrations */}
-            <div className="illustration" id="ill-guy-laptop">
-              <img src={personThinking} alt="Person typing on laptop" />
+            <div className="illustration laptop-hover-container" id="ill-guy-laptop">
+              <img className="laptop-base-closed" src={laptopClosed} alt="Closed Laptop" />
+              <img className="laptop-hover-open" src={laptopOpen} alt="Open Laptop" />
             </div>
             
             <div className="illustration" id="ill-waving">
