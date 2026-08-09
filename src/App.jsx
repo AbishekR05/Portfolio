@@ -74,13 +74,15 @@ export default function App() {
     gsap.set(canvasRef.current, { x: initialCoords.x, y: initialCoords.y });
     canvasDrag.update();
 
-    // 2. Enable dragging for elements
+    // 2. Enable dragging for elements — disable canvas drag while item is being dragged
     const itemsDrag = Draggable.create(".illustration, .card-item", {
       bounds: canvasRef.current,
       onDragStart: function() {
+        canvasDrag.disable();
         gsap.set(this.target, { zIndex: 100 });
       },
       onDragEnd: function() {
+        canvasDrag.enable();
         gsap.set(this.target, { zIndex: 10 });
       }
     });
@@ -91,10 +93,12 @@ export default function App() {
       bounds: canvasRef.current,
       onDragStart: function() {
         isLaptopDragging = true;
+        canvasDrag.disable();
         gsap.set(this.target, { zIndex: 100 });
       },
       onDragEnd: function() {
         setTimeout(() => { isLaptopDragging = false; }, 50);
+        canvasDrag.enable();
         gsap.set(this.target, { zIndex: 25 });
       }
     })[0];
