@@ -261,6 +261,11 @@ export default function App() {
       {/* Zone 2: Story Detail Panel (rendered as separate fullscreen page overlay) */}
       {currentPage === 'about' && (
         <section className="story-page-fullscreen">
+          {/* Top Left Back to Home Button */}
+          <button className="about-back-btn" onClick={() => setCurrentPage('main')}>
+            ← Back to Home
+          </button>
+
           <div className="about-wrapper">
             
             <header className="about-header">
@@ -289,20 +294,16 @@ export default function App() {
             {/* Skill Badge Elements */}
             <footer className="badge-container">
               <div className="badge-item badge-figma">
-                <img src={figmaLogo} alt="Figma" />
-                <span>Figma</span>
+                <span>AI Student</span>
               </div>
               <div className="badge-item badge-github">
-                <img src={githubLogo} alt="GitHub" />
-                <span>GitHub</span>
+                <span>Full Stack Developer</span>
               </div>
               <div className="badge-item badge-gemini">
-                <img src={geminiLogo} alt="Gemini" />
-                <span>Gemini</span>
+                <span>UI/UX Designer</span>
               </div>
               <div className="badge-item badge-claude">
-                <img src={claudeLogo} alt="Claude" />
-                <span>Claude</span>
+                <span>Loves Learning</span>
               </div>
             </footer>
 

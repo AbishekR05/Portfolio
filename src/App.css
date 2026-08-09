@@ -526,6 +526,8 @@ body:active {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .badge-item {
@@ -610,6 +612,31 @@ body:active {
   0% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-8px) rotate(-1deg); }
   100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* My Story Custom Back Button */
+.about-back-btn {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-family: var(--font-clash);
+  font-size: 16px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 10px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  color: var(--text-dark);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  z-index: 510;
+}
+
+.about-back-btn:hover {
+  background-color: var(--text-dark);
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 /* --- Full Screen Story Page Overlay --- */
