@@ -14,6 +14,8 @@ import figmaLogo from './assets/figma_logo.svg';
 import claudeLogo from './assets/claude_logo.svg';
 import githubLogo from './assets/github_logo.svg';
 import geminiLogo from './assets/gemini_logo.svg';
+import linkedinLogo from './assets/linkedin_logo.svg';
+import gmailLogo from './assets/gmail_logo.svg';
 
 // Register GSAP plugin
 gsap.registerPlugin(Draggable);
@@ -204,6 +206,26 @@ export default function App() {
           <div className="sidebar-icon" title="Gemini">
             <img src={geminiLogo} alt="Gemini" />
           </div>
+        </aside>
+
+        {/* Socials Sidebar Dock — right side */}
+        <aside
+          className="hud-sidebar socials-sidebar"
+          id="hud-socials-dock"
+          style={{
+            opacity: currentPage === 'about' ? 0 : 1,
+            pointerEvents: currentPage === 'about' ? 'none' : 'auto'
+          }}
+        >
+          <a className="sidebar-icon" href="https://www.linkedin.com/in/abishek-r-917481359/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+            <img src={linkedinLogo} alt="LinkedIn" />
+          </a>
+          <a className="sidebar-icon" href="https://github.com/AbishekR05" target="_blank" rel="noopener noreferrer" title="GitHub">
+            <img src={githubLogo} alt="GitHub" />
+          </a>
+          <a className="sidebar-icon" href="mailto:abishekramesh1976@gmail.com" title="Gmail">
+            <img src={gmailLogo} alt="Gmail" />
+          </a>
         </aside>
       </div>
 

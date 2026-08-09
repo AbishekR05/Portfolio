@@ -185,6 +185,16 @@ body, html {
   opacity: 1;
 }
 
+/* Socials sidebar — mirror of tool sidebar on the right side */
+.socials-sidebar {
+  left: auto;
+  right: 40px;
+}
+
+.socials-sidebar .sidebar-icon:hover {
+  transform: scale(1.15) rotate(-5deg);
+}
+
 /* --- Canvas Zones --- */
 .canvas-zone {
   position: absolute;
