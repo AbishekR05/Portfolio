@@ -111,8 +111,6 @@ export default function App() {
     // 4. Floating animations
     const bob1 = gsap.to("#ill-waving", { y: "-=10", duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1 });
     const bob2 = gsap.to("#ill-rasgula", { y: "+=6", duration: 4, ease: "sine.inOut", yoyo: true, repeat: -1 });
-    const bob3 = gsap.to("#card-about-link", { rotation: "-=1", duration: 4.5, ease: "sine.inOut", yoyo: true, repeat: -1 });
-    const bob4 = gsap.to("#card-contact", { rotation: "+=1", duration: 5, ease: "sine.inOut", yoyo: true, repeat: -1 });
 
     // Handle window resize bounds
     const handleResize = () => {
@@ -142,8 +140,6 @@ export default function App() {
       laptopEl.removeEventListener('click', handleLaptopClick);
       bob1.kill();
       bob2.kill();
-      bob3.kill();
-      bob4.kill();
       window.removeEventListener('resize', handleResize);
     };
   }, []);
