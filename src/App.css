@@ -74,11 +74,11 @@ body:active {
 
 /* --- Fixed HUD Overlay --- */
 .hud-layer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none; /* Let clicks pass through to canvas */
   z-index: 200;
 }
@@ -144,7 +144,7 @@ body:active {
 
 /* Tool/Social Sidebar Dock */
 .hud-sidebar {
-  position: absolute;
+  position: fixed;
   left: 40px;
   top: 50%;
   transform: translateY(-50%);
