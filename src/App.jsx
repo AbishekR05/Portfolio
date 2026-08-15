@@ -17,6 +17,7 @@ import geminiLogo from './assets/gemini_logo.svg';
 import linkedinLogo from './assets/linkedin_logo.svg';
 import gmailLogo from './assets/gmail_logo.svg';
 import folderIcon from './assets/folder_icon.png';
+import resumeIcon from './assets/resume_icon.png';
 
 // Register GSAP plugin
 gsap.registerPlugin(Draggable);
@@ -277,23 +278,18 @@ export default function App() {
               <div className="contact-email">abishekramesh1976@gmail.com</div>
             </div>
 
-            {/* Resume Folder — hover to preview */}
-            <div className="illustration resume-folder" id="ill-resume-folder">
-              <img className="folder-icon-img" src={folderIcon} alt="Resume Folder" />
-              <span className="folder-label">ATS_Resume.pdf</span>
-              <div className="resume-popup">
-                <div className="resume-popup-header">
-                  <span>📄 ATS Resume.pdf</span>
-                  <a href="/resume.pdf" download="Abishek_Resume.pdf" className="resume-download-btn">
-                    ↓ Download
-                  </a>
-                </div>
-                <iframe
-                  src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  title="Abishek Resume Preview"
-                  className="resume-iframe"
-                />
+            {/* Resume Folder Illustration — sized to card frame width */}
+            <div className="illustration resume-folder-container" id="ill-resume-folder">
+              <div className="folder-wrapper">
+                <img className="folder-icon-img" src={folderIcon} alt="Resume Folder" />
+                
+                {/* Floating Resume PDF Icon / Text */}
+                <a href="/resume.pdf" download="Abishek_Resume.pdf" className="floating-resume-link" title="Download Resume">
+                  <img src={resumeIcon} alt="PDF Resume" className="resume-icon-img" />
+                  <span className="resume-download-txt">Resume</span>
+                </a>
               </div>
+              <span className="folder-label">Final_Final_Final</span>
             </div>
 
           </div>

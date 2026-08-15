@@ -681,94 +681,88 @@ body, html {
 #ill-resume-folder {
   left: 1020px;
   top: 490px;
-  width: 100px;
+  width: 240px;
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   z-index: 15;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.folder-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .folder-icon-img {
-  width: 100px;
+  width: 240px;
   height: auto;
-  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.25s ease;
-  filter: drop-shadow(0 8px 16px rgba(0, 120, 200, 0.25));
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08));
 }
 
 .folder-label {
   font-family: var(--font-satoshi);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-dark);
   text-align: center;
+  margin-top: 4px;
   white-space: nowrap;
 }
 
-/* Popup — hidden by default */
-.resume-popup {
+/* Floating PDF Resume Link styling */
+.floating-resume-link {
   position: absolute;
-  bottom: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%) scale(0.92) translateY(10px);
-  width: 340px;
-  background: #ffffff;
-  border: 1.5px solid rgba(0,0,0,0.1);
-  border-radius: 20px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.18);
-  overflow: hidden;
+  bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   opacity: 0;
+  transform: scale(0.5) translateY(30px);
   pointer-events: none;
-  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
-  z-index: 200;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none;
+  z-index: 30;
 }
 
-.resume-popup-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 18px;
-  background: #f5f5f5;
-  border-bottom: 1px solid rgba(0,0,0,0.07);
+.resume-icon-img {
+  width: 105px;
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.16));
+  transition: transform 0.2s ease;
+}
+
+.resume-icon-img:hover {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.resume-download-txt {
   font-family: var(--font-satoshi);
   font-size: 12px;
-  font-weight: 600;
-  color: var(--text-dark);
-}
-
-.resume-download-btn {
-  font-family: var(--font-clash);
-  font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
+  color: #ffffff;
   background: var(--text-dark);
-  color: #fff;
-  padding: 5px 14px;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 4px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
-.resume-download-btn:hover {
-  background: #333;
-  transform: scale(1.03);
+/* Hover visual interactions */
+#ill-resume-folder:hover .folder-icon-img {
+  transform: scale(0.9) translateY(12px) rotate(-6deg);
 }
 
-.resume-iframe {
-  width: 100%;
-  height: 420px;
-  border: none;
-  display: block;
-}
-
-/* Show popup & lift folder on hover */
-.resume-folder:hover .folder-icon-img {
-  transform: translateY(-6px) scale(1.06);
-  filter: drop-shadow(0 16px 28px rgba(0, 120, 200, 0.35));
-}
-
-.resume-folder:hover .resume-popup {
+#ill-resume-folder:hover .floating-resume-link {
   opacity: 1;
+  transform: scale(1) translateY(-110px) rotate(6deg);
   pointer-events: auto;
-  transform: translateX(-50%) scale(1) translateY(0px);
 }
