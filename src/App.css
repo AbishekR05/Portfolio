@@ -352,8 +352,8 @@ body, html {
 }
 
 #ill-noodles {
-  left: 1100px;
-  top: 290px;
+  left: 1180px;
+  top: 330px;
   width: 150px;
   position: absolute;
 }
@@ -691,7 +691,7 @@ body, html {
    ============================== */
 
 #ill-resume-folder {
-  left: 1020px;
+  left: 1140px;
   top: 490px;
   width: 240px;
   position: absolute;
