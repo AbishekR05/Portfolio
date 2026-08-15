@@ -162,9 +162,9 @@ export default function App() {
             className="logo" 
             id="hud-logo"
             style={{
-              opacity: currentPage === 'about' ? 0 : 1,
-              transform: currentPage === 'about' ? 'translateY(-50%) translateX(-20px)' : 'translateY(-50%) translateX(0)',
-              pointerEvents: currentPage === 'about' ? 'none' : 'auto'
+              opacity: currentPage !== 'main' ? 0 : 1,
+              transform: currentPage !== 'main' ? 'translateY(-50%) translateX(-20px)' : 'translateY(-50%) translateX(0)',
+              pointerEvents: currentPage !== 'main' ? 'none' : 'auto'
             }}
           >
             Abishek Ramesh
@@ -179,7 +179,7 @@ export default function App() {
           </button>
           
           <button 
-            className={`explore-btn ${currentPage === 'about' ? 'hidden' : ''}`} 
+            className={`explore-btn ${currentPage !== 'main' ? 'hidden' : ''}`} 
             id="explore-hud-btn"
             onClick={() => setCurrentPage('about')}
           >
@@ -192,8 +192,8 @@ export default function App() {
           className="hud-sidebar" 
           id="hud-sidebar-dock"
           style={{
-            opacity: currentPage === 'about' ? 0 : 1,
-            pointerEvents: currentPage === 'about' ? 'none' : 'auto'
+            opacity: currentPage !== 'main' ? 0 : 1,
+            pointerEvents: currentPage !== 'main' ? 'none' : 'auto'
           }}
         >
           <div className="sidebar-icon" title="Figma">
@@ -215,8 +215,8 @@ export default function App() {
           className="hud-sidebar socials-sidebar"
           id="hud-socials-dock"
           style={{
-            opacity: currentPage === 'about' ? 0 : 1,
-            pointerEvents: currentPage === 'about' ? 'none' : 'auto'
+            opacity: currentPage !== 'main' ? 0 : 1,
+            pointerEvents: currentPage !== 'main' ? 'none' : 'auto'
           }}
         >
           <a className="sidebar-icon" href="https://www.linkedin.com/in/abishek-r-917481359/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
@@ -232,7 +232,7 @@ export default function App() {
       </div>
 
       {/* Main Draggable Map Canvas */}
-      <main id="canvas" ref={canvasRef} style={{ display: currentPage === 'about' ? 'none' : 'block' }}>
+      <main id="canvas" ref={canvasRef} style={{ display: currentPage === 'main' ? 'block' : 'none' }}>
         
         {/* Zone 1: Landing Hero Frame */}
         <section className="canvas-zone" id="zone-hero">
@@ -272,7 +272,7 @@ export default function App() {
               <span className="card-action">Get To know about me &gt;</span>
             </div>
 
-            <div className="card-item" id="card-contact">
+            <div className="card-item" id="card-contact" onClick={() => setCurrentPage('contact')}>
               <div className="contact-header">Let’s Talk</div>
               <div className="contact-sub">Good work starts with good convos</div>
               <div className="contact-email">abishekramesh1976@gmail.com</div>
@@ -345,6 +345,49 @@ export default function App() {
               </div>
             </footer>
 
+          </div>
+        </section>
+      )}
+
+      {/* Zone 3: Contact Fullscreen Page Overlay */}
+      {currentPage === 'contact' && (
+        <section className="contact-page-fullscreen">
+          {/* Top Left Back to Playground Button */}
+          <button className="contact-back-btn" onClick={() => setCurrentPage('main')}>
+            ← Back to Playground
+          </button>
+
+          <div className="contact-page-content">
+            <h2 className="contact-page-title">
+              Good work comes from <br />
+              good conversations.
+            </h2>
+            
+            <div className="contact-page-email-wrapper">
+              <a href="mailto:abishekramesh1976@gmail.com" className="contact-page-email">
+                abishekramesh1976@gmail.com
+              </a>
+              <div className="email-highlight-underline"></div>
+            </div>
+
+            <div className="contact-page-socials">
+              <a 
+                href="https://www.linkedin.com/in/abishek-r-917481359/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-social-link"
+              >
+                LINKEDIN
+              </a>
+              <a 
+                href="https://github.com/AbishekR05" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="contact-social-link"
+              >
+                GITHUB
+              </a>
+            </div>
           </div>
         </section>
       )}

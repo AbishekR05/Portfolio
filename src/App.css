@@ -766,3 +766,122 @@ body, html {
   transform: scale(1) translateY(-110px) rotate(6deg);
   pointer-events: auto;
 }
+
+/* ==============================
+   CONTACT PAGE FULLSCREEN OVERLAY
+   ============================== */
+
+.contact-page-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color); /* #FBFBFA */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: pageFadeIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 40px;
+}
+
+.contact-back-btn {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-family: var(--font-satoshi);
+  font-size: 14px;
+  font-weight: 500;
+  background: #ffffff;
+  border: 1.5px solid var(--border-color);
+  padding: 10px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-dark);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.contact-back-btn:hover {
+  background-color: var(--text-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.contact-page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 40px;
+  max-width: 800px;
+}
+
+.contact-page-title {
+  font-family: var(--font-clash);
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-dark);
+  letter-spacing: -1px;
+}
+
+.contact-page-email-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.contact-page-email {
+  font-family: var(--font-caveat);
+  font-size: 44px;
+  font-weight: 600;
+  color: #ff6b6b; /* Cursive coral/pink color from screenshot */
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.contact-page-email:hover {
+  transform: scale(1.03);
+}
+
+/* Thick yellow highlight line underneath the email */
+.email-highlight-underline {
+  position: absolute;
+  bottom: 4px;
+  left: -5px;
+  right: -5px;
+  height: 8px;
+  background-color: #ffd43b; /* bright yellow highlighter color */
+  z-index: 1;
+  border-radius: 4px;
+  opacity: 0.85;
+}
+
+.contact-page-socials {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.contact-social-link {
+  font-family: var(--font-satoshi);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-social-link:hover {
+  color: var(--text-dark);
+  transform: translateY(-2px);
+}
