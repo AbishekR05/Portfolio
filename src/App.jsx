@@ -7,6 +7,7 @@ import './App.css';
 import waving from './assets/waving.png';
 import cameraGotcha from './assets/camera_gotcha.png';
 import rasgula from './assets/rasgula.png';
+import noodles from './assets/noodles.png';
 import peaceAvatar from './assets/Peace.png';
 import laptopClosed from './assets/laptop_closed.png';
 import laptopOpen from './assets/laptop_open.png';
@@ -119,6 +120,7 @@ export default function App() {
     // 4. Floating animations
     const bob1 = gsap.to("#ill-waving", { y: "-=10", duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1 });
     const bob2 = gsap.to("#ill-rasgula", { y: "+=6", duration: 4, ease: "sine.inOut", yoyo: true, repeat: -1 });
+    const bob3 = gsap.to("#ill-noodles", { y: "-=6", duration: 3.5, ease: "sine.inOut", yoyo: true, repeat: -1 });
 
     // Handle window resize bounds
     const handleResize = () => {
@@ -148,6 +150,7 @@ export default function App() {
       laptopEl.removeEventListener('click', handleLaptopClick);
       bob1.kill();
       bob2.kill();
+      bob3.kill();
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -257,6 +260,11 @@ export default function App() {
             {/* Rasgullas (positioned according to Figma coordinates) */}
             <div className="illustration" id="ill-rasgula">
               <img src={rasgula} alt="Bowl of sweet Rasgullas" />
+            </div>
+
+            {/* Noodles (positioned according to Figma coordinates) */}
+            <div className="illustration" id="ill-noodles">
+              <img src={noodles} alt="Bowl of hot noodles" />
             </div>
 
             {/* Central Titles */}

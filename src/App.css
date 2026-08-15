@@ -351,6 +351,18 @@ body, html {
   height: auto;
 }
 
+#ill-noodles {
+  left: 1100px;
+  top: 290px;
+  width: 150px;
+  position: absolute;
+}
+
+#ill-noodles img {
+  width: 150px;
+  height: auto;
+}
+
 /* --- Cards (Rotated Sketchbook Style) --- */
 .card-item {
   position: absolute;
