@@ -352,14 +352,14 @@ body, html {
 }
 
 #ill-noodles {
-  left: 470px;
-  top: 330px;
-  width: 130px;
+  left: 450px;
+  top: 320px;
+  width: 150px;
   position: absolute;
 }
 
 #ill-noodles img {
-  width: 130px;
+  width: 150px;
   height: auto;
 }
 
