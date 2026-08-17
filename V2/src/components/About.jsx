@@ -15,6 +15,18 @@ export default function About() {
     },
   };
 
+  const slideRightVariants = {
+    hidden: { opacity: 0, x: -150 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
     <section id="about" className="about-section dark-theme">
       <div className="about-container container">
@@ -30,7 +42,7 @@ export default function About() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-10% 0px" }}
-                variants={textVariants}
+                variants={slideRightVariants}
               >
                 ABOUT ME
               </motion.h3>
@@ -42,7 +54,7 @@ export default function About() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-10% 0px" }}
-                variants={textVariants}
+                variants={slideRightVariants}
               >
                 CRAFTING LOGICAL ARCHITECTURE
               </motion.h2>
