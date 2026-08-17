@@ -35,6 +35,11 @@
   margin-bottom: 1.5rem;
 }
 
+.mask-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
 .about-headline {
   font-size: clamp(2rem, 3.5vw, 4rem);
   color: var(--paper);

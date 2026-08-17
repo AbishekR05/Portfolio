@@ -4,7 +4,7 @@ import "./About.css";
 
 export default function About() {
   const textVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: "100%" },
     visible: {
       opacity: 1,
       y: 0,
@@ -24,45 +24,53 @@ export default function About() {
           
           {/* Left Column: Context / Text */}
           <div className="about-content">
-            <motion.h3 
-              className="eyebrow-text section-eyebrow"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-10% 0px" }}
-              variants={textVariants}
-            >
-              ABOUT ME
-            </motion.h3>
+            <div className="mask-wrapper">
+              <motion.h3 
+                className="eyebrow-text section-eyebrow"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-10% 0px" }}
+                variants={textVariants}
+              >
+                ABOUT ME
+              </motion.h3>
+            </div>
             
-            <motion.h2 
-              className="about-headline display-text"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-10% 0px" }}
-              variants={textVariants}
-            >
-              CRAFTING LOGICAL ARCHITECTURE
-            </motion.h2>
+            <div className="mask-wrapper">
+              <motion.h2 
+                className="about-headline display-text"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-10% 0px" }}
+                variants={textVariants}
+              >
+                CRAFTING LOGICAL ARCHITECTURE
+              </motion.h2>
+            </div>
 
-            <motion.p 
-              className="about-para body-text"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-10% 0px" }}
-              variants={textVariants}
-            >
-              I am an Artificial Intelligence and Data Science undergraduate focused on building AI-powered, scalable software systems. Combining robust machine learning pipelines with modular front-end architecture, I shape intelligent applications from databases to user interfaces.
-            </motion.p>
+            <div className="mask-wrapper">
+              <motion.p 
+                className="about-para body-text"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-10% 0px" }}
+                variants={textVariants}
+              >
+                I am an Artificial Intelligence and Data Science undergraduate focused on building AI-powered, scalable software systems. Combining robust machine learning pipelines with modular front-end architecture, I shape intelligent applications from databases to user interfaces.
+              </motion.p>
+            </div>
 
-            <motion.p 
-              className="about-para body-text"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-10% 0px" }}
-              variants={textVariants}
-            >
-              From offline real-time subtitle translation to NIFTY 50 trading signals using XGBoost—my engineering approach prioritizes data validation, performance tuning, and explainable models.
-            </motion.p>
+            <div className="mask-wrapper">
+              <motion.p 
+                className="about-para body-text"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-10% 0px" }}
+                variants={textVariants}
+              >
+                From offline real-time subtitle translation to NIFTY 50 trading signals using XGBoost—my engineering approach prioritizes data validation, performance tuning, and explainable models.
+              </motion.p>
+            </div>
           </div>
 
           {/* Right Column: Dynamic Statistics List */}

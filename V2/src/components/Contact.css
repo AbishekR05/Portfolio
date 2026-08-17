@@ -34,10 +34,37 @@
   text-align: left;
 }
 
+/* Sliced Contact text effect */
+.sliced-contact-wrapper {
+  position: relative;
+  width: fit-content;
+  overflow: hidden;
+}
+
 .contact-headline {
   font-size: clamp(3rem, 6vw, 6.5rem);
   color: var(--ink);
   font-family: var(--font-display);
+  margin: 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.top-slice {
+  clip-path: inset(0 0 50% 0);
+}
+
+.bottom-slice {
+  position: absolute;
+  left: 0;
+  top: 0;
+  clip-path: inset(50% 0 0 0);
+}
+
+/* Mask reveal container */
+.mask-wrapper {
+  overflow: hidden;
+  width: 100%;
 }
 
 .contact-links {
