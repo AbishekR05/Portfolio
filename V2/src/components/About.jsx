@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import blueSwirl from "../assets/blue_swirl.jpg";
 import "./About.css";
 
 export default function About() {
@@ -16,20 +15,8 @@ export default function About() {
     },
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  };
-
   return (
-    <section id="about" className="about-section">
+    <section id="about" className="about-section dark-theme">
       <div className="about-container container">
         
         {/* Split grid */}
@@ -78,19 +65,31 @@ export default function About() {
             </motion.p>
           </div>
 
-          {/* Right Column: Premium Visual Asset */}
-          <div className="about-visual">
-            <motion.div 
-              className="about-img-frame"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-10% 0px" }}
-              variants={imageVariants}
-            >
-              <img src={blueSwirl} alt="Abstract Glass Fluid Sculpture" className="about-img" />
-              <div className="about-img-overlay"></div>
-            </motion.div>
-          </div>
+          {/* Right Column: Dynamic Statistics List */}
+          <motion.div 
+            className="stat-list mono"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-10% 0px" }}
+            variants={textVariants}
+          >
+            <div className="stat-row">
+              <span className="stat-label">PROJECTS SHIPPED</span>
+              <span className="stat-value display-text">5+</span>
+            </div>
+            <div className="stat-row">
+              <span className="stat-label">ACTIVE PRODUCTS</span>
+              <span className="stat-value display-text">LIVE</span>
+            </div>
+            <div className="stat-row">
+              <span className="stat-label">CURRENT FOCUS</span>
+              <span className="stat-value display-text">AI + SYSTEMS</span>
+            </div>
+            <div className="stat-row">
+              <span className="stat-label">AVAILABILITY</span>
+              <span className="stat-value display-text">OPEN</span>
+            </div>
+          </motion.div>
 
         </div>
 

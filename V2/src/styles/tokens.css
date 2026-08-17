@@ -1,11 +1,26 @@
 :root {
-  --bg-light: #f4f3ef; /* hero background, off-white not pure white */
-  --bg-dark: #0a0a0a; /* takeover / tools / contact background */
-  --ink: #111111; /* primary text on light */
-  --paper: #f4f3ef; /* primary text on dark */
-  --accent-red: #e8382d; /* strike-through mark, small live indicators */
-  --muted: #8a8a85; /* secondary/caption text */
+  --bg-light: #EDEAE2; /* cream background matching Claude */
+  --bg-dark: #121214; /* ink background matching Claude */
+  --ink: #121214; /* primary text on light */
+  --paper: #EFEDE7; /* primary text on dark */
+  --accent-red: #C1443B; /* red strike-through mark */
+  --muted: #8B8778; /* secondary text */
 
-  --font-display: 'Anton', sans-serif;
+  /* Claude's design system tokens */
+  --cream: #EDEAE2;
+  --cream-dim: #E2DED2;
+  --ink-claude: #121214;
+  --ink-2: #1B1B1E;
+  --line-claude: #C9C4B8;
+  --line-dark: #3A3A3D;
+  --brass: #D9A441;
+  --brass-dim: #B98A2E;
+  --red-claude: #C1443B;
+  --off-white: #EFEDE7;
+  --text-dim: #8B8778;
+  --text-dim-dark: #8C8A85;
+
+  --font-display: 'Archivo Black', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }

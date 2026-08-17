@@ -1,81 +1,144 @@
-import React, { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import pillTexture from "../assets/pill_texture.jpg";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import "./Hero.css";
 
-export default function Hero({ pillRef, placeholderRef }) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+export default function Hero() {
+  const pinStageRef = useRef(null);
+  const heroContentRef = useRef(null);
+  const capsuleRef = useRef(null);
+  const strikeWordRef = useRef(null);
+  const voidPanelRef = useRef(null);
+  const bootTextRef = useRef(null);
 
-  const lineVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
+  useGSAP(() => {
+    const pinStage = pinStageRef.current;
+    const capsule = capsuleRef.current;
+    const voidPanel = voidPanelRef.current;
+    const heroContent = heroContentRef.current;
+    const strikeWord = strikeWordRef.current;
+    const bootText = bootTextRef.current;
+
+    if (!pinStage || !capsule || !voidPanel || !heroContent || !strikeWord || !bootText) return;
+
+    // Check accessibility/prefers-reduced-motion or mobile layout
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) {
+      // Bypass animations
+      return;
+    }
+
+    // Function to calculate and position voidPanel directly over the capsule
+    const positionVoidToCapsule = () => {
+      const parentRect = pinStage.getBoundingClientRect();
+      const capsuleRect = capsule.getBoundingClientRect();
+
+      gsap.set(voidPanel, {
+        left: capsuleRect.left - parentRect.left,
+        top: capsuleRect.top - parentRect.top,
+        width: capsuleRect.width,
+        height: capsuleRect.height,
+        borderRadius: capsuleRect.height / 2,
+      });
+    };
+
+    // Position initially
+    positionVoidToCapsule();
+
+    // Re-align on resize
+    window.addEventListener("resize", positionVoidToCapsule);
+
+    // Create the pin and takeover timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: pinStage,
+        start: "top top",
+        end: "+=140%",
+        scrub: 0.6,
+        pin: true,
+        anticipatePin: 1,
       },
-    },
-  };
+    });
+
+    tl.fromTo(
+      strikeWord,
+      { "--strike": 0 },
+      { "--strike": 1, duration: 0.18, ease: "power1.in" },
+      0.02
+    )
+    .to(
+      voidPanel,
+      {
+        left: 0,
+        top: 0,
+        width: "100vw",
+        height: "100vh",
+        borderRadius: 0,
+        duration: 0.55,
+        ease: "power2.inOut",
+      },
+      0.2
+    )
+    .to(
+      heroContent,
+      { opacity: 0, y: -30, duration: 0.25 },
+      0.15
+    )
+    .to(
+      bootText,
+      { opacity: 1, duration: 0.2 },
+      0.55
+    )
+    .to(
+      bootText,
+      { opacity: 0, duration: 0.15 },
+      0.85
+    );
+
+    return () => {
+      window.removeEventListener("resize", positionVoidToCapsule);
+    };
+  }, { scope: pinStageRef });
 
   return (
-    <section id="hero" className="hero-section">
-      {/* Top Navigation */}
-      <header className="hero-nav">
-        <div className="logo eyebrow-text">AR • PORTFOLIO</div>
-        <nav className="nav-links eyebrow-text">
-          <a href="#projects">PROJECTS</a>
-          <a href="#about">ABOUT</a>
-          <a href="#contact">CONTACT</a>
-        </nav>
-      </header>
+    <section ref={pinStageRef} className="pin-stage" id="hero">
+      {/* Top Nav (built-in like Claude's) */}
+      <nav className="nav">
+        <span>ABISHEK / SYSTEMS &amp; INTERFACES</span>
+        <span className="mono">CHENNAI, IN — 2026</span>
+      </nav>
 
-      {/* Hero Headline */}
-      <motion.div 
-        className="hero-container container"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className="hero-copy display-text">
-          <motion.div variants={lineVariants} className="headline-line">
-            BUILDING SYSTEMS
-          </motion.div>
-          <motion.div variants={lineVariants} className="headline-line flex-line">
-            <span>THAT</span>
-            <span ref={placeholderRef} className="pill-placeholder"></span>
-            <span className="strikethrough-container">
-              WORK
-              <svg className="strikethrough-svg" viewBox="0 0 100 20" preserveAspectRatio="none">
-                <motion.path 
-                  d="M 2,12 Q 25,6 50,11 T 98,8"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ delay: 0.9, duration: 0.7, ease: "easeInOut" }}
-                />
-              </svg>
+      {/* Hero Content */}
+      <div ref={heroContentRef} className="hero-content">
+        <div className="eyebrow mono">PORTFOLIO — UI/UX &amp; FULLSTACK</div>
+        <h1 className="headline display">
+          <span>I DESIGN</span>
+          <span>INTERFACES</span>
+          <span>THAT</span>
+          <span className="capsule-wrap">
+            <span ref={capsuleRef} className="capsule display">
+              <span ref={strikeWordRef} className="strike">DON'T</span>
             </span>
-          </motion.div>
-        </div>
-      </motion.div>
+          </span>
+          <span>WORK.</span>
+        </h1>
+      </div>
 
-      {/* Shared Takeover Pill element (placed absolute inside #hero to scale smoothly) */}
-      <div 
-        ref={pillRef} 
-        className="takeover-pill"
-        style={{
-          backgroundImage: `url(${pillTexture})`,
-        }}
-      >
-        <div className="pill-overlay"></div>
+      {/* Hero Footer */}
+      <div className="hero-foot">
+        <span>[ AI STUDENT / FULLSTACK DEV ]</span>
+        <span className="scroll-cue">
+          <span className="dot"></span> SCROLL TO ENTER
+        </span>
+      </div>
+
+      {/* Expanding Void Panel */}
+      <div ref={voidPanelRef} className="void-panel"></div>
+
+      {/* Booting Text (revealed during the void takeover) */}
+      <div ref={bootTextRef} className="boot-text mono">
+        SYSTEM ONLINE ///&nbsp; LOADING PROJECT INDEX&nbsp; ///&nbsp; 03 SHIPPED
       </div>
     </section>
   );
