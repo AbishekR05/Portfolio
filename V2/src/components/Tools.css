@@ -91,7 +91,7 @@
 .marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marquee 40s linear infinite; /* Reduced marquee speed for readability */
+  animation: marquee 60s linear infinite; /* Slower marquee speed for a more premium feel */
   will-change: transform;
   align-items: center;
 }
@@ -139,7 +139,7 @@
     height: 80px;
   }
   .marquee-track {
-    animation-duration: 25s; /* Scaled down for mobile */
+    animation-duration: 35s; /* Slower scroll on mobile */
   }
   .marquee-track span {
     gap: 8px;
