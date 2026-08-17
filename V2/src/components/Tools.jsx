@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import { 
+  SiReact, SiNodedotjs, SiExpress, SiFlask, SiStreamlit, SiElectron, SiMongodb, SiMysql,
+  SiTensorflow, SiScikitlearn, SiPytorch, SiPython, SiGit, SiGithub, SiFigma,
+  SiJavascript, SiC
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import { DiVisualstudio } from "react-icons/di";
 import "./Tools.css";
 
 export default function Tools() {
@@ -8,17 +15,43 @@ export default function Tools() {
     {
       id: "systems",
       title: "Systems I Work With",
-      items: ["React.js", "Node.js", "Express.js", "Flask", "Streamlit", "Electron", "MongoDB", "MySQL"]
+      items: [
+        { label: "React.js", icon: SiReact },
+        { label: "Node.js", icon: SiNodedotjs },
+        { label: "Express.js", icon: SiExpress },
+        { label: "Flask", icon: SiFlask },
+        { label: "Streamlit", icon: SiStreamlit },
+        { label: "Electron", icon: SiElectron },
+        { label: "MongoDB", icon: SiMongodb },
+        { label: "MySQL", icon: SiMysql }
+      ]
     },
     {
       id: "focus",
       title: "Current Focus",
-      items: ["AI/ML", "TensorFlow", "Scikit-learn", "PyTorch", "Deep Learning", "Computer Vision", "NLP"]
+      items: [
+        { label: "AI/ML", icon: SiTensorflow },
+        { label: "TensorFlow", icon: SiTensorflow },
+        { label: "Scikit-learn", icon: SiScikitlearn },
+        { label: "PyTorch", icon: SiPytorch },
+        { label: "Deep Learning", icon: SiTensorflow },
+        { label: "Computer Vision", icon: SiPython },
+        { label: "NLP", icon: SiTensorflow }
+      ]
     },
     {
       id: "tools",
       title: "Tools I Use Daily",
-      items: ["Python", "Java", "JavaScript", "C", "Git", "GitHub", "Figma", "VS Code"]
+      items: [
+        { label: "Python", icon: SiPython },
+        { label: "Java", icon: FaJava },
+        { label: "JavaScript", icon: SiJavascript },
+        { label: "C", icon: SiC },
+        { label: "Git", icon: SiGit },
+        { label: "GitHub", icon: SiGithub },
+        { label: "Figma", icon: SiFigma },
+        { label: "VS Code", icon: DiVisualstudio }
+      ]
     }
   ];
 
@@ -46,13 +79,20 @@ export default function Tools() {
               </div>
             </div>
             
-            {/* Marquee band (appears on hover, edge-to-edge, white text) */}
+            {/* Marquee band (appears on hover, edge-to-edge, white background, dark text/logos) */}
             <div className={`marquee-band ${hoveredSection === sec.id ? "active" : ""}`}>
               <div className="marquee-track">
                 {/* Repeated array for continuous flow */}
-                {Array(6).fill(sec.items).flat().map((item, idx) => (
-                  <span key={idx}>{item.toUpperCase()} ✦&nbsp;</span>
-                ))}
+                {Array(6).fill(sec.items).flat().map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <span key={idx}>
+                      {Icon && <Icon className="marquee-icon" />}
+                      {item.label.toUpperCase()}
+                      <span className="marquee-separator">✦</span>
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </div>

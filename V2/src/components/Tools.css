@@ -68,13 +68,13 @@
   transform: translateY(-12px);
 }
 
-/* Edge-to-edge marquee band */
+/* Edge-to-edge marquee band with solid white background */
 .marquee-band {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  background: transparent; /* transparent, white text on dark */
+  background: #ffffff; /* pure white background matching the image */
   display: flex;
   align-items: center;
   opacity: 0;
@@ -94,16 +94,29 @@
   white-space: nowrap;
   animation: marquee 24s linear infinite;
   will-change: transform;
+  align-items: center;
 }
 
 .marquee-track span {
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(24px, 3.8vw, 48px); /* identical size to the row heading */
-  color: var(--paper); /* white as usual */
+  font-size: clamp(20px, 3.2vw, 38px);
+  color: #121214; /* dark ink text on white background */
   padding: 0 28px;
   display: inline-flex;
   align-items: center;
-  gap: 28px;
+  gap: 12px;
+}
+
+.marquee-icon {
+  font-size: clamp(22px, 3.5vw, 36px);
+  color: #121214; /* dark ink icon */
+  flex-shrink: 0;
+}
+
+.marquee-separator {
+  margin-left: 24px;
+  color: #8C8A85; /* dim/brass divider star */
+  opacity: 0.6;
 }
 
 @keyframes marquee {
@@ -128,5 +141,11 @@
   }
   .marquee-track {
     animation-duration: 16s;
+  }
+  .marquee-track span {
+    gap: 8px;
+  }
+  .marquee-separator {
+    margin-left: 12px;
   }
 }
