@@ -36,7 +36,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="contact-section dark-theme">
+    <section id="contact" className="contact-section">
       <div className="contact-container container">
         
         {/* Split Grid */}

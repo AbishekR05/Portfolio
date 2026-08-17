@@ -11,9 +11,9 @@
   padding: 0 5vw;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
-  text-align: left;
+  text-align: center;
   margin-bottom: 60px;
 }
 
@@ -30,12 +30,10 @@
 /* Edge-to-edge rows container */
 .interactive-rows {
   width: 100%;
-  border-top: 1px solid var(--line-dark);
 }
 
 .interactive-row {
   position: relative;
-  border-bottom: 1px solid var(--line-dark);
   height: clamp(90px, 12vh, 140px); /* fixed height so elements align perfectly */
   cursor: pointer;
   display: flex;
@@ -93,7 +91,7 @@
 .marquee-track {
   display: flex;
   white-space: nowrap;
-  animation: marquee 24s linear infinite;
+  animation: marquee 40s linear infinite; /* Reduced marquee speed for readability */
   will-change: transform;
   align-items: center;
 }
@@ -141,7 +139,7 @@
     height: 80px;
   }
   .marquee-track {
-    animation-duration: 16s;
+    animation-duration: 25s; /* Scaled down for mobile */
   }
   .marquee-track span {
     gap: 8px;
