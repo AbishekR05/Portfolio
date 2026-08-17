@@ -1,54 +1,56 @@
 import React, { useState } from "react";
-import { tools } from "../data/tools";
 import "./Tools.css";
 
 export default function Tools() {
-  const [isHovered, setIsHovered] = useState(false);
+  const [hoveredSection, setHoveredSection] = useState(null);
 
-  // Duplicate tools array for seamless looping marquee
-  const marqueeTools = [...tools, ...tools, ...tools, ...tools];
+  const sections = [
+    {
+      id: "systems",
+      title: "Systems I Work With",
+      items: ["React.js", "Node.js", "Express.js", "Flask", "Streamlit", "Electron", "MongoDB", "MySQL"]
+    },
+    {
+      id: "focus",
+      title: "Current Focus",
+      items: ["AI/ML", "TensorFlow", "Scikit-learn", "PyTorch", "Deep Learning", "Computer Vision", "NLP"]
+    },
+    {
+      id: "tools",
+      title: "Tools I Use Daily",
+      items: ["Python", "Java", "JavaScript", "C", "Git", "GitHub", "Figma", "VS Code"]
+    }
+  ];
 
   return (
-    <section 
-      id="tools" 
-      className="tools-section dark-theme"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="container tools-header-container">
-        <h3 className="eyebrow-text header-focus">CURRENT FOCUS</h3>
-        <h2 className="display-text header-daily">TOOLS I USE DAILY</h2>
-      </div>
-
-      {/* Interactive Tool Rail */}
-      <div className="tools-rail-container">
+    <section id="tools" className="tools-section dark-theme">
+      <div className="tools-container container">
+        <div className="eyebrow mono">STACK</div>
+        <h2 className="display">Tech Stack &amp; Focus</h2>
         
-        {/* State 1: Static Centered Row (Default) */}
-        <div className={`tools-static-grid ${isHovered ? "fade-out" : "fade-in"}`}>
-          {tools.map((tool, idx) => {
-            const Icon = tool.icon;
-            return (
-              <div className="tool-chip static-chip" key={`static-${idx}`}>
-                <Icon className="tool-icon" aria-label={tool.label} />
-                <span className="tool-label eyebrow-text">{tool.label}</span>
+        <div className="interactive-rows">
+          {sections.map((sec) => (
+            <div 
+              key={sec.id}
+              className={`interactive-row ${hoveredSection === sec.id ? "is-hovered" : ""}`}
+              onMouseEnter={() => setHoveredSection(sec.id)}
+              onMouseLeave={() => setHoveredSection(null)}
+            >
+              <div className="row-title display">
+                {sec.title}
               </div>
-            );
-          })}
-        </div>
-
-        {/* State 2: Active Scrolling Marquee (Hovered) */}
-        <div className={`tools-marquee-track ${isHovered ? "fade-in is-playing" : "fade-out"}`}>
-          {marqueeTools.map((tool, idx) => {
-            const Icon = tool.icon;
-            return (
-              <div className="tool-chip marquee-chip" key={`marquee-${idx}`}>
-                <Icon className="tool-icon" aria-label={tool.label} />
-                <span className="tool-label eyebrow-text">{tool.label}</span>
+              
+              <div className={`marquee-band ${hoveredSection === sec.id ? "active" : ""}`}>
+                <div className="marquee-track">
+                  {/* Repeat item lists for seamless infinite loop */}
+                  {Array(4).fill(sec.items).flat().map((item, idx) => (
+                    <span key={idx}>{item.toUpperCase()} ✦&nbsp;</span>
+                  ))}
+                </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   );

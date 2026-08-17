@@ -4,27 +4,27 @@ import project3 from "../assets/project_3.jpg";
 
 export const projects = [
   {
-    slug: "synergy-analytics",
-    title: "Synergy Analytics",
-    description: "A real-time analytics engine and dashboard visualizing user flows, conversions, and revenue metrics across multi-tenant SaaS structures.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "GSAP"],
+    slug: "nifty-50-ml-trading",
+    title: "NIFTY 50 ML Trading",
+    description: "Engineered an end-to-end XGBoost pipeline with feature engineering, time-series validation, and SHAP explainability to generate NIFTY 50 trading signals.",
+    stack: ["Python", "Scikit-learn", "XGBoost", "yfinance"],
     image: project1,
-    url: "https://github.com/AbishekR05/synergy-analytics"
+    url: "https://github.com/AbishekR05"
   },
   {
-    slug: "sentinel-gateway",
-    title: "Sentinel Gateway",
-    description: "High-performance API Gateway with custom rate limiting, JWT verification, and dynamic routing resolving up to 10k requests per second.",
-    stack: ["Flask", "Python", "Redis", "Docker", "Node.js"],
+    slug: "live-subtitle-gen",
+    title: "Live Subtitle Gen",
+    description: "Developed an offline real-time subtitle generator with English-Tamil translation, transparent overlay, sentiment-aware captioning, profanity filtering, and subtitle export.",
+    stack: ["React.js", "Electron", "Flask", "Faster-Whisper"],
     image: project2,
-    url: "https://github.com/AbishekR05/sentinel-gateway"
+    url: "https://github.com/AbishekR05"
   },
   {
-    slug: "helix-sync",
-    title: "Helix Sync",
-    description: "Globally distributed document database replication controller ensuring active-active conflict resolution and high availability.",
-    stack: ["Next.js", "React", "MongoDB", "Express", "Node.js"],
+    slug: "ai-integrated-ide",
+    title: "AI Integrated IDE",
+    description: "Built a multi-language online IDE with AI-assisted code explanation and execution support for Java, Python, and C via Judge0 API.",
+    stack: ["React.js", "Node.js", "Express.js", "Judge0 API"],
     image: project3,
-    url: "https://github.com/AbishekR05/helix-sync"
+    url: "https://github.com/AbishekR05"
   }
 ];

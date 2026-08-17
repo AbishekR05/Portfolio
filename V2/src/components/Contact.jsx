@@ -58,11 +58,11 @@ export default function Contact() {
               <a href="https://github.com/AbishekR05" target="_blank" rel="noopener noreferrer" className="contact-link display-text">
                 GitHub
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact-link display-text">
+              <a href="https://linkedin.com/in/abishek-r-917481359" target="_blank" rel="noopener noreferrer" className="contact-link display-text">
                 LinkedIn
               </a>
-              <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="contact-link display-text">
-                Behance
+              <a href="mailto:abishekramesh1976@gmail.com" className="contact-link display-text">
+                Email
               </a>
             </motion.div>
           </div>

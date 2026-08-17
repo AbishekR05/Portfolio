@@ -106,7 +106,7 @@ export default function Hero() {
       {/* Top Nav (built-in like Claude's) */}
       <nav className="nav">
         <span>ABISHEK / SYSTEMS &amp; INTERFACES</span>
-        <span className="mono">CHENNAI, IN — 2026</span>
+        <span className="mono">SIVAKASI, IN — 2026</span>
       </nav>
 
       {/* Hero Content */}

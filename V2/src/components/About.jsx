@@ -51,7 +51,7 @@ export default function About() {
               viewport={{ once: true, margin: "-10% 0px" }}
               variants={textVariants}
             >
-              I am a developer who builds high-performance digital systems. Focused on robust backend pipelines and modular front-end code bases, I translate complex technical structures into simple, reliable interfaces.
+              I am an Artificial Intelligence and Data Science undergraduate focused on building AI-powered, scalable software systems. Combining robust machine learning pipelines with modular front-end architecture, I shape intelligent applications from databases to user interfaces.
             </motion.p>
 
             <motion.p 
@@ -61,7 +61,7 @@ export default function About() {
               viewport={{ once: true, margin: "-10% 0px" }}
               variants={textVariants}
             >
-              From custom API microservices resolving heavy concurrent operations, to smooth scroll-driven interactive experiences—my approach centers on architectural neatness and performance profiling.
+              From offline real-time subtitle translation to NIFTY 50 trading signals using XGBoost—my engineering approach prioritizes data validation, performance tuning, and explainable models.
             </motion.p>
           </div>
 
@@ -102,7 +102,7 @@ export default function About() {
           variants={textVariants}
         >
           <span className="education-label eyebrow-text">EDUCATION://</span>
-          <span className="education-val caption-text">B.Tech CS + Business Systems — RIT Chennai</span>
+          <span className="education-val caption-text">B.Tech in Artificial Intelligence &amp; Data Science — Mepco Schlenk Engineering College, Sivakasi (CGPA: 7.72/10)</span>
         </motion.div>
 
       </div>
