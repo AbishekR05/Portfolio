@@ -24,33 +24,39 @@ export default function Tools() {
 
   return (
     <section id="tools" className="tools-section dark-theme">
-      <div className="tools-container container">
+      {/* Heading aligned with global container padding */}
+      <div className="tools-heading-wrapper">
         <div className="eyebrow mono">STACK</div>
         <h2 className="display">Tech Stack &amp; Focus</h2>
-        
-        <div className="interactive-rows">
-          {sections.map((sec) => (
-            <div 
-              key={sec.id}
-              className={`interactive-row ${hoveredSection === sec.id ? "is-hovered" : ""}`}
-              onMouseEnter={() => setHoveredSection(sec.id)}
-              onMouseLeave={() => setHoveredSection(null)}
-            >
+      </div>
+      
+      {/* Edge-to-edge rows */}
+      <div className="interactive-rows">
+        {sections.map((sec) => (
+          <div 
+            key={sec.id}
+            className="interactive-row"
+            onMouseEnter={() => setHoveredSection(sec.id)}
+            onMouseLeave={() => setHoveredSection(null)}
+          >
+            {/* Heading text (disappears on hover) */}
+            <div className="row-content-wrapper">
               <div className="row-title display">
                 {sec.title}
               </div>
-              
-              <div className={`marquee-band ${hoveredSection === sec.id ? "active" : ""}`}>
-                <div className="marquee-track">
-                  {/* Repeat item lists for seamless infinite loop */}
-                  {Array(4).fill(sec.items).flat().map((item, idx) => (
-                    <span key={idx}>{item.toUpperCase()} ✦&nbsp;</span>
-                  ))}
-                </div>
+            </div>
+            
+            {/* Marquee band (appears on hover, edge-to-edge, white text) */}
+            <div className={`marquee-band ${hoveredSection === sec.id ? "active" : ""}`}>
+              <div className="marquee-track">
+                {/* Repeated array for continuous flow */}
+                {Array(6).fill(sec.items).flat().map((item, idx) => (
+                  <span key={idx}>{item.toUpperCase()} ✦&nbsp;</span>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
