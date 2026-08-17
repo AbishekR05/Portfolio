@@ -1,0 +1,11 @@
+:root {
+  --bg-light: #f4f3ef; /* hero background, off-white not pure white */
+  --bg-dark: #0a0a0a; /* takeover / tools / contact background */
+  --ink: #111111; /* primary text on light */
+  --paper: #f4f3ef; /* primary text on dark */
+  --accent-red: #e8382d; /* strike-through mark, small live indicators */
+  --muted: #8a8a85; /* secondary/caption text */
+
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}

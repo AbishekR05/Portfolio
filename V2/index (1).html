@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abishek — Building Interfaces That Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root{
+    --cream:#EDEAE2;
+    --cream-dim:#E2DED2;
+    --ink:#121214;
+    --ink-2:#1B1B1E;
+    --line:#C9C4B8;
+    --line-dark:#3A3A3D;
+    --brass:#D9A441;
+    --brass-dim:#B98A2E;
+    --red:#C1443B;
+    --off-white:#EFEDE7;
+    --text-dim:#8B8778;
+    --text-dim-dark:#8C8A85;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{background:var(--cream);}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    cursor:default;
+  }
+  ::selection{background:var(--brass);color:var(--ink);}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .display{font-family:'Archivo Black',sans-serif;text-transform:uppercase;letter-spacing:-0.01em;}
+
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:28px 5vw;
+    mix-blend-mode:difference;
+    color:#fff;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    pointer-events:none;
+  }
+  .nav span{opacity:0.85;}
+
+  /* ---------- HERO / PIN STAGE ---------- */
+  .pin-stage{
+    position:relative;
+    height:100vh;
+    width:100%;
+    overflow:hidden;
+    background:var(--cream);
+  }
+  .hero-content{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 5vw;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.15em;
+    color:var(--text-dim);
+    margin-bottom:22px;
+  }
+  .headline{
+    font-size:clamp(38px,8.4vw,118px);
+    line-height:0.98;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:0.18em;
+  }
+  .capsule-wrap{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .capsule{
+    position:relative;
+    background:var(--ink);
+    color:var(--off-white);
+    border-radius:999px;
+    padding:0.12em 0.55em 0.16em;
+    display:inline-flex;
+    align-items:center;
+    overflow:hidden;
+  }
+  .capsule .strike{
+    position:relative;
+  }
+  .capsule .strike{--strike:0;}
+  .capsule .strike::after{
+    content:'';
+    position:absolute;
+    left:-6%;right:-6%;
+    top:52%;
+    height:3px;
+    background:var(--red);
+    transform:scaleX(var(--strike));
+    transform-origin:left;
+  }
+  .hero-foot{
+    position:absolute;bottom:36px;left:5vw;right:5vw;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--text-dim);
+  }
+  .scroll-cue{display:flex;align-items:center;gap:10px;}
+  .scroll-cue .dot{width:6px;height:6px;border-radius:50%;background:var(--ink);}
+
+  /* the panel that grows from the capsule to fill the screen */
+  .void-panel{
+    position:absolute;
+    background:var(--ink);
+    border-radius:999px;
+    z-index:5;
+    pointer-events:none;
+  }
+  .boot-text{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--brass);
+    font-size:clamp(14px,1.6vw,20px);
+    letter-spacing:0.08em;
+    opacity:0;
+    z-index:6;
+    text-align:center;
+    padding:0 20px;
+  }
+
+  /* ---------- PROJECTS (horizontal rail) ---------- */
+  .rail-section{
+    position:relative;
+    height:100vh;
+    background:var(--ink);
+    overflow:hidden;
+  }
+  .rail-track{
+    position:absolute;
+    top:0;left:0;
+    height:100%;
+    display:flex;
+    align-items:center;
+    will-change:transform;
+  }
+  .rail-heading{
+    width:42vw;
+    min-width:340px;
+    padding:0 6vw;
+    color:var(--off-white);
+    flex-shrink:0;
+  }
+  .rail-heading .eyebrow{color:var(--text-dim-dark);}
+  .rail-heading h2{
+    font-size:clamp(32px,4.4vw,64px);
+    line-height:1.02;
+  }
+  .project-card{
+    width:56vw;
+    max-width:760px;
+    min-width:400px;
+    height:70vh;
+    flex-shrink:0;
+    margin-right:5vw;
+    background:var(--ink-2);
+    border:1px solid var(--line-dark);
+    border-radius:6px;
+    padding:44px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    color:var(--off-white);
+  }
+  .project-card .num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--brass);
+    font-size:14px;
+    letter-spacing:0.1em;
+  }
+  .project-card .thumb{
+    flex:1;
+    margin:24px 0;
+    border-radius:4px;
+    background:
+      repeating-linear-gradient(135deg, #232326 0px, #232326 2px, #1B1B1E 2px, #1B1B1E 14px);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--text-dim-dark);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+  }
+  .project-card h3{
+    font-family:'Archivo Black',sans-serif;
+    text-transform:uppercase;
+    font-size:26px;
+    margin-bottom:8px;
+  }
+  .project-card p{
+    color:#B9B6AE;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:14px;
+  }
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    padding:4px 10px;
+    border:1px solid var(--line-dark);
+    border-radius:999px;
+    color:var(--text-dim-dark);
+  }
+  .card-link{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--brass);
+    border-bottom:1px solid var(--brass);
+    align-self:flex-start;
+  }
+  .rail-end{
+    width:20vw;min-width:200px;
+    flex-shrink:0;
+    padding:0 6vw;
+    color:var(--text-dim-dark);
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    background:var(--cream);
+    padding:16vh 5vw;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:60px;
+    border-top:1px solid var(--line);
+  }
+  .about h2{
+    font-size:clamp(30px,4vw,56px);
+    line-height:1.08;
+  }
+  .about .body-copy{
+    font-size:17px;
+    line-height:1.7;
+    color:#3C3A34;
+    margin-top:26px;
+    max-width:52ch;
+  }
+  .stat-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+  .stat-row{
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .stat-row .stat-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:var(--text-dim);
+  }
+  .stat-row .stat-value{
+    font-family:'Archivo Black',sans-serif;
+    font-size:22px;
+  }
+
+  /* ---------- TOOLS ---------- */
+  .tools{
+    background:var(--ink);
+    color:var(--off-white);
+    padding:16vh 5vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .tools .eyebrow{color:var(--text-dim-dark);}
+  .tools h2{
+    font-size:clamp(30px,4vw,56px);
+    margin-bottom:60px;
+  }
+  .tool-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:1px;
+    background:var(--line-dark);
+    border:1px solid var(--line-dark);
+    transition:opacity 0.4s ease;
+  }
+  .tool-cell{
+    background:var(--ink);
+    padding:30px 20px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    letter-spacing:0.03em;
+    color:#D8D5CC;
+    transition:background 0.25s ease,color 0.25s ease;
+  }
+  .tool-cell:hover{background:var(--ink-2);color:var(--brass);}
+
+  .marquee-band{
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:0;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    background:var(--brass);
+    transition:height 0.4s cubic-bezier(.6,0,.2,1);
+    pointer-events:none;
+  }
+  .tools:hover .marquee-band{height:110px;}
+  .marquee-track{
+    display:flex;
+    white-space:nowrap;
+    animation:marquee 14s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'Archivo Black',sans-serif;
+    text-transform:uppercase;
+    font-size:44px;
+    color:var(--ink);
+    padding:0 28px;
+    display:inline-flex;
+    align-items:center;
+    gap:28px;
+  }
+  @keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:var(--cream);
+    padding:18vh 5vw 10vh;
+    border-top:1px solid var(--line);
+  }
+  .contact h2{
+    font-size:clamp(40px,9vw,140px);
+    line-height:0.92;
+    margin-bottom:8vh;
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:40px;
+    padding-top:6vh;
+    border-top:1px solid var(--line);
+  }
+  .contact-col .eyebrow{color:var(--text-dim);margin-bottom:16px;}
+  .contact-links{display:flex;flex-direction:column;gap:10px;}
+  .contact-links a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:15px;
+    width:fit-content;
+    border-bottom:1px solid transparent;
+    transition:border-color 0.2s ease,color 0.2s ease;
+  }
+  .contact-links a:hover{border-color:var(--ink);color:var(--brass-dim);}
+  .contact-note{
+    font-size:15px;
+    line-height:1.6;
+    color:#3C3A34;
+    max-width:36ch;
+  }
+  .contact-note em{color:var(--brass-dim);font-style:normal;}
+  footer{
+    margin-top:10vh;
+    display:flex;justify-content:space-between;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--text-dim);
+  }
+
+  @media (max-width:800px){
+    .about{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .rail-heading{width:80vw;}
+    .project-card{width:82vw;min-width:280px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span>ABISHEK / SYSTEMS &amp; INTERFACES</span>
+  <span class="mono">CHENNAI, IN — 2026</span>
+</nav>
+
+<!-- ============ HERO + BLACK TAKEOVER (pinned) ============ -->
+<section class="pin-stage" id="pinStage">
+  <div class="hero-content" id="heroContent">
+    <div class="eyebrow mono">PORTFOLIO — UI/UX &amp; FULLSTACK</div>
+    <h1 class="headline display">
+      <span>I DESIGN</span>
+      <span>INTERFACES</span>
+      <span>THAT</span>
+      <span class="capsule-wrap">
+        <span class="capsule display"><span class="strike" id="strikeWord">DON&rsquo;T</span></span>
+      </span>
+      <span>WORK.</span>
+    </h1>
+  </div>
+  <div class="hero-foot">
+    <span>[ AI STUDENT / FULLSTACK DEV ]</span>
+    <span class="scroll-cue"><span class="dot"></span> SCROLL TO ENTER</span>
+  </div>
+
+  <div class="void-panel" id="voidPanel"></div>
+  <div class="boot-text mono" id="bootText">
+    SYSTEM ONLINE ///&nbsp; LOADING PROJECT INDEX&nbsp; ///&nbsp; 03 SHIPPED
+  </div>
+</section>
+
+<!-- ============ PROJECTS — HORIZONTAL RAIL ============ -->
+<section class="rail-section" id="railSection">
+  <div class="rail-track" id="railTrack">
+
+    <div class="rail-heading">
+      <div class="eyebrow mono">SELECTED WORK</div>
+      <h2 class="display">Three systems,<br>shipped and running.</h2>
+    </div>
+
+    <!-- PROJECT 01 -->
+    <div class="project-card">
+      <span class="num mono">01 / 03</span>
+      <div class="thumb">[ PROJECT SCREENSHOT / PLACEHOLDER ]</div>
+      <h3>Project Name One</h3>
+      <p>One or two lines on what this project does and the problem it solves — replace with real copy.</p>
+      <div class="tag-row">
+        <span class="tag mono">ROLE — PLACEHOLDER</span>
+        <span class="tag mono">STACK — PLACEHOLDER</span>
+      </div>
+      <a href="#" class="card-link mono">VIEW PROJECT →</a>
+    </div>
+
+    <!-- PROJECT 02 -->
+    <div class="project-card">
+      <span class="num mono">02 / 03</span>
+      <div class="thumb">[ PROJECT SCREENSHOT / PLACEHOLDER ]</div>
+      <h3>Project Name Two</h3>
+      <p>One or two lines on what this project does and the problem it solves — replace with real copy.</p>
+      <div class="tag-row">
+        <span class="tag mono">ROLE — PLACEHOLDER</span>
+        <span class="tag mono">STACK — PLACEHOLDER</span>
+      </div>
+      <a href="#" class="card-link mono">VIEW PROJECT →</a>
+    </div>
+
+    <!-- PROJECT 03 -->
+    <div class="project-card">
+      <span class="num mono">03 / 03</span>
+      <div class="thumb">[ PROJECT SCREENSHOT / PLACEHOLDER ]</div>
+      <h3>Project Name Three</h3>
+      <p>One or two lines on what this project does and the problem it solves — replace with real copy.</p>
+      <div class="tag-row">
+        <span class="tag mono">ROLE — PLACEHOLDER</span>
+        <span class="tag mono">STACK — PLACEHOLDER</span>
+      </div>
+      <a href="#" class="card-link mono">VIEW PROJECT →</a>
+    </div>
+
+    <div class="rail-end mono">END OF INDEX ///<br>SCROLL DOWN TO CONTINUE ↓</div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about">
+  <div>
+    <div class="eyebrow mono">ABOUT</div>
+    <h2 class="display">Design and code,<br>held to the same standard.</h2>
+    <p class="body-copy">
+      I'm a UI/UX designer and fullstack developer currently studying AI, based in Chennai. I like
+      products where the interface and the system underneath it are designed together — not handed
+      off between two different people who never talk. Replace this paragraph with your real bio.
+    </p>
+  </div>
+  <div class="stat-list mono">
+    <div class="stat-row">
+      <span class="stat-label">PROJECTS SHIPPED</span>
+      <span class="stat-value display">[X]+</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">CURRENT FOCUS</span>
+      <span class="stat-value display">AI + DESIGN</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">AVAILABILITY</span>
+      <span class="stat-value display">OPEN</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLS ============ -->
+<section class="tools">
+  <div class="eyebrow mono">STACK</div>
+  <h2 class="display">Tools I reach for daily.</h2>
+  <div class="tool-grid mono">
+    <div class="tool-cell">REACT</div>
+    <div class="tool-cell">NEXT.JS</div>
+    <div class="tool-cell">NODE.JS</div>
+    <div class="tool-cell">EXPRESS</div>
+    <div class="tool-cell">MONGODB</div>
+    <div class="tool-cell">PYTHON</div>
+    <div class="tool-cell">GSAP</div>
+    <div class="tool-cell">FIGMA</div>
+  </div>
+
+  <div class="marquee-band">
+    <div class="marquee-track">
+      <span>REACT ✦ NEXT.JS ✦ NODE.JS ✦ EXPRESS ✦ MONGODB ✦ PYTHON ✦ GSAP ✦ FIGMA ✦</span>
+      <span>REACT ✦ NEXT.JS ✦ NODE.JS ✦ EXPRESS ✦ MONGODB ✦ PYTHON ✦ GSAP ✦ FIGMA ✦</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact">
+  <h2 class="display">Let's<br>build.</h2>
+  <div class="contact-grid">
+    <div class="contact-col">
+      <div class="eyebrow mono">ELSEWHERE</div>
+      <div class="contact-links">
+        <a href="#" target="_blank">GitHub ↗</a>
+        <a href="#" target="_blank">LinkedIn ↗</a>
+        <a href="#" target="_blank">Behance ↗</a>
+      </div>
+    </div>
+    <div class="contact-col">
+      <div class="eyebrow mono">STATUS</div>
+      <p class="contact-note">Currently studying AI and <em>open to</em> internships, freelance work, and ambitious collaborations.</p>
+    </div>
+    <div class="contact-col">
+      <div class="eyebrow mono">REACH OUT</div>
+      <div class="contact-links">
+        <a href="mailto:you@example.com">you@example.com</a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <span>© 2026 ABISHEK</span>
+    <span>BUILT WITH GSAP + SCROLLTRIGGER</span>
+  </footer>
+</section>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+function initHeroPin(){
+  const capsule = document.querySelector('.capsule');
+  const capsuleWrap = document.querySelector('.capsule-wrap');
+  const heroContent = document.getElementById('heroContent');
+  const voidPanel = document.getElementById('voidPanel');
+  const bootText = document.getElementById('bootText');
+  const strikeEl = document.getElementById('strikeWord');
+
+  function positionVoidToCapsule(){
+    const r = capsule.getBoundingClientRect();
+    gsap.set(voidPanel, {
+      left:r.left, top:r.top, width:r.width, height:r.height,
+      borderRadius:999
+    });
+  }
+  positionVoidToCapsule();
+  window.addEventListener('resize', positionVoidToCapsule);
+
+  const diag = Math.sqrt(window.innerWidth**2 + window.innerHeight**2);
+
+  const tl = gsap.timeline({
+    scrollTrigger:{
+      trigger:'#pinStage',
+      start:'top top',
+      end:'+=140%',
+      scrub:0.6,
+      pin:true,
+      anticipatePin:1
+    }
+  });
+
+  tl.fromTo(strikeEl, { '--strike':0 }, { '--strike':1, duration:0.18, ease:'power1.in' }, 0.02)
+  .to(voidPanel, {
+    left:0, top:0, width:window.innerWidth, height:window.innerHeight,
+    borderRadius:0, duration:0.55, ease:'power2.inOut'
+  }, 0.2)
+  .to(heroContent, { opacity:0, y:-30, duration:0.25 }, 0.15)
+  .to(bootText, { opacity:1, duration:0.2 }, 0.55)
+  .to(bootText, { opacity:0, duration:0.15 }, 0.85);
+}
+
+function initRail(){
+  const track = document.getElementById('railTrack');
+  const section = document.getElementById('railSection');
+
+  ScrollTrigger.create({
+    trigger: section,
+    start:'top top',
+    end: () => '+=' + (track.scrollWidth - window.innerWidth),
+    pin:true,
+    scrub:0.6,
+    invalidateOnRefresh:true,
+    onUpdate: self => {
+      const x = -(track.scrollWidth - window.innerWidth) * self.progress;
+      gsap.set(track, {x});
+    }
+  });
+}
+
+window.addEventListener('load', () => {
+  initHeroPin();
+  initRail();
+  ScrollTrigger.refresh();
+});
+</script>
+</body>
+</html>
